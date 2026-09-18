@@ -1,0 +1,43 @@
+{
+  "model": "../system-one-poc/models/qwen3-4b-instruct-2507-4bit",
+  "answers": {
+    "team": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9999998874648379,
+        "technical": 1.12535162055095e-7
+      },
+      "confidence": 0.999997239983347
+    }
+  },
+  "usage": {
+    "input_tokens": 107,
+    "processed_tokens": 107,
+    "cached_tokens": 0,
+    "image_tokens": 0,
+    "output_tokens": 0,
+    "model_evaluations": 1
+  },
+  "latency_ms": 547.2187089617364,
+  "traces": {
+    "team": {
+      "labels": {
+        "A": "billing",
+        "B": "technical"
+      },
+      "logits": {
+        "billing": 49.75,
+        "technical": 33.75
+      },
+      "label_mass": 1.0,
+      "prompt_tokens": 107,
+      "cached_tokens": 0,
+      "image_tokens": 0,
+      "latency_ms": 547.1764999674633
+    }
+  },
+  "backend": "mlx-lm",
+  "probability_kind": "uncalibrated_label_probability",
+  "confidence_kind": "normalized_entropy_concentration"
+}

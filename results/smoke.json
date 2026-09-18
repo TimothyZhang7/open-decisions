@@ -1,0 +1,2167 @@
+{
+  "kind": "synthetic_smoke_evaluation",
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "load_ms": 3399.557582975831,
+  "versions": {
+    "mlx-vlm": "0.7.1",
+    "mlx": "0.32.2",
+    "transformers": "5.17.0",
+    "pillow": "12.3.0"
+  },
+  "model": ".models/qwen3-vl-4b-instruct-4bit",
+  "total": 28,
+  "passed": 27,
+  "warm_text_median_ms": 62.24875000771135,
+  "image_median_ms": 453.7852090434171,
+  "output_tokens": 0,
+  "cases": [
+    {
+      "name": "team_0",
+      "request": {
+        "state": "I was charged twice. Please refund the duplicate charge.",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "billing",
+      "actual": "billing",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "billing",
+            "probabilities": {
+              "billing": 0.9999999979820549,
+              "technical": 5.905303987027459e-10,
+              "shipping": 7.582560412610715e-10,
+              "other": 6.691586077789527e-10
+            },
+            "confidence": 0.9999999678090961
+          }
+        },
+        "usage": {
+          "input_tokens": 143,
+          "processed_tokens": 143,
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 676.3147920137271,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 49.5,
+              "technical": 28.25,
+              "shipping": 28.5,
+              "other": 28.375
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 143,
+            "cached_tokens": 0,
+            "image_tokens": 0,
+            "latency_ms": 676.2793330126442
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_1",
+      "request": {
+        "state": "My parcel never arrived. Where is it?",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "shipping",
+      "actual": "shipping",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "shipping",
+            "probabilities": {
+              "billing": 8.152020348619234e-09,
+              "technical": 1.917171427718419e-10,
+              "shipping": 0.999999955121442,
+              "other": 3.6534820497580325e-08
+            },
+            "confidence": 0.9999994036920057
+          }
+        },
+        "usage": {
+          "input_tokens": 141,
+          "processed_tokens": 20,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 60.878457967191935,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 25.375,
+              "technical": 21.625,
+              "shipping": 44.0,
+              "other": 26.875
+            },
+            "label_mass": 0.9999961256980896,
+            "prompt_tokens": 141,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 60.83908397704363
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_2",
+      "request": {
+        "state": "The API returns HTTP 500 when I upload a file.",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "technical",
+      "actual": "technical",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "technical",
+            "probabilities": {
+              "billing": 8.592166455328911e-10,
+              "technical": 0.9999999809308634,
+              "shipping": 6.348799994977544e-09,
+              "other": 1.186111992516251e-08
+            },
+            "confidence": 0.9999997307178524
+          }
+        },
+        "usage": {
+          "input_tokens": 146,
+          "processed_tokens": 25,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 60.54141599452123,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 27.375,
+              "technical": 48.25,
+              "shipping": 29.375,
+              "other": 30.0
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 146,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 60.50554197281599
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_3",
+      "request": {
+        "state": "Do you sponsor local community events?",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "other",
+      "actual": "other",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "other",
+            "probabilities": {
+              "billing": 2.1443660649275084e-05,
+              "technical": 1.7602028548870983e-06,
+              "shipping": 5.828991307856676e-05,
+              "other": 0.9999185062234173
+            },
+            "confidence": 0.9993481429232866
+          }
+        },
+        "usage": {
+          "input_tokens": 139,
+          "processed_tokens": 18,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 58.70641698129475,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 31.75,
+              "technical": 29.25,
+              "shipping": 32.75,
+              "other": 42.5
+            },
+            "label_mass": 0.9998931884765625,
+            "prompt_tokens": 139,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 58.66545799653977
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_4",
+      "request": {
+        "state": "Please email a VAT invoice for last month's payment.",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "billing",
+      "actual": "billing",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "billing",
+            "probabilities": {
+              "billing": 0.9999999835135409,
+              "technical": 3.850741859282518e-09,
+              "shipping": 9.23744950967776e-09,
+              "other": 3.398267763469668e-09
+            },
+            "confidence": 0.9999997632150651
+          }
+        },
+        "usage": {
+          "input_tokens": 143,
+          "processed_tokens": 22,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 59.19870804063976,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 48.0,
+              "technical": 28.625,
+              "shipping": 29.5,
+              "other": 28.5
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 143,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 59.157166979275644
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_5",
+      "request": {
+        "state": "The package tracking number says delivered to the wrong address.",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "shipping",
+      "actual": "shipping",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "shipping",
+            "probabilities": {
+              "billing": 3.927856612177611e-07,
+              "technical": 1.4166062861035406e-09,
+              "shipping": 0.9999982348410662,
+              "other": 1.3709566664234051e-06
+            },
+            "confidence": 0.9999811760560554
+          }
+        },
+        "usage": {
+          "input_tokens": 143,
+          "processed_tokens": 22,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 61.5596660063602,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 35.5,
+              "technical": 29.875,
+              "shipping": 50.25,
+              "other": 36.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 143,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 61.516374989878386
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "team_6",
+      "request": {
+        "state": "The app crashes whenever I open Settings.",
+        "questions": {
+          "decision": {
+            "instructions": "Which team should handle this request?",
+            "type": "choice",
+            "criteria": {
+              "billing": "Payments, invoices, refunds",
+              "technical": "Software errors, integrations",
+              "shipping": "Deliveries, tracking",
+              "other": "None of these"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": "technical",
+      "actual": "technical",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "technical",
+            "probabilities": {
+              "billing": 1.4166087384168759e-09,
+              "technical": 0.9999999659565006,
+              "shipping": 1.0467401438397672e-08,
+              "other": 2.2159489018979405e-08
+            },
+            "confidence": 0.9999995341491559
+          }
+        },
+        "usage": {
+          "input_tokens": 140,
+          "processed_tokens": 19,
+          "cached_tokens": 121,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 61.71954202000052,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "billing",
+              "B": "technical",
+              "C": "shipping",
+              "D": "other"
+            },
+            "logits": {
+              "billing": 27.125,
+              "technical": 47.5,
+              "shipping": 29.125,
+              "other": 29.875
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 140,
+            "cached_tokens": 121,
+            "image_tokens": 0,
+            "latency_ms": 61.670791008509696
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "human_0",
+      "request": {
+        "state": "Can I speak to a real person?",
+        "questions": {
+          "decision": {
+            "instructions": "Does the customer explicitly request to speak with a human support agent?",
+            "type": "noul",
+            "criteria": null
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": true,
+      "actual": true,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "noul",
+            "noul": 0.9997965730219448
+          }
+        },
+        "usage": {
+          "input_tokens": 120,
+          "processed_tokens": 120,
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 254.26316598895937,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "false",
+              "B": "true"
+            },
+            "logits": {
+              "false": 37.0,
+              "true": 45.5
+            },
+            "label_mass": 0.9994469881057739,
+            "prompt_tokens": 120,
+            "cached_tokens": 0,
+            "image_tokens": 0,
+            "latency_ms": 254.2090840288438
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "human_1",
+      "request": {
+        "state": "Thanks, that solved it!",
+        "questions": {
+          "decision": {
+            "instructions": "Does the customer explicitly request to speak with a human support agent?",
+            "type": "noul",
+            "criteria": null
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": false,
+      "actual": false,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "noul",
+            "noul": 3.2241866333029355e-08
+          }
+        },
+        "usage": {
+          "input_tokens": 118,
+          "processed_tokens": 17,
+          "cached_tokens": 101,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 62.24875000771135,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "false",
+              "B": "true"
+            },
+            "logits": {
+              "false": 42.75,
+              "true": 25.5
+            },
+            "label_mass": 0.9889529943466187,
+            "prompt_tokens": 118,
+            "cached_tokens": 101,
+            "image_tokens": 0,
+            "latency_ms": 62.18912499025464
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "human_2",
+      "request": {
+        "state": "Please connect me to a human support agent.",
+        "questions": {
+          "decision": {
+            "instructions": "Does the customer explicitly request to speak with a human support agent?",
+            "type": "noul",
+            "criteria": null
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": true,
+      "actual": true,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "noul",
+            "noul": 0.999997739675702
+          }
+        },
+        "usage": {
+          "input_tokens": 121,
+          "processed_tokens": 20,
+          "cached_tokens": 101,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 60.332083026878536,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "false",
+              "B": "true"
+            },
+            "logits": {
+              "false": 34.0,
+              "true": 47.0
+            },
+            "label_mass": 0.9999656677246094,
+            "prompt_tokens": 121,
+            "cached_tokens": 101,
+            "image_tokens": 0,
+            "latency_ms": 60.274874966125935
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "human_3",
+      "request": {
+        "state": "Do not transfer me to a person. Just show me the help page.",
+        "questions": {
+          "decision": {
+            "instructions": "Does the customer explicitly request to speak with a human support agent?",
+            "type": "noul",
+            "criteria": null
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": false,
+      "actual": false,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "noul",
+            "noul": 2.902311985211097e-06
+          }
+        },
+        "usage": {
+          "input_tokens": 127,
+          "processed_tokens": 26,
+          "cached_tokens": 101,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 62.874458031728864,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "false",
+              "B": "true"
+            },
+            "logits": {
+              "false": 48.0,
+              "true": 35.25
+            },
+            "label_mass": 0.9999809265136719,
+            "prompt_tokens": 127,
+            "cached_tokens": 101,
+            "image_tokens": 0,
+            "latency_ms": 62.822457985021174
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "severity_0",
+      "request": {
+        "state": "The icon is slightly misaligned. Everything works normally.",
+        "questions": {
+          "decision": {
+            "instructions": "How severe is the software issue?",
+            "type": "score",
+            "criteria": [
+              "Cosmetic issue with no effect on functionality",
+              "A feature is impaired but a workaround exists",
+              "A core function is unavailable and there is no workaround"
+            ]
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "score",
+            "score": 1.477084591406094e-07,
+            "normalized_score": 7.38542295703047e-08,
+            "probabilities": {
+              "0": 0.9999998538967687,
+              "1": 1.4449800349929618e-07,
+              "2": 1.6052278206566059e-09
+            },
+            "legend": {
+              "0": "Cosmetic issue with no effect on functionality",
+              "1": "A feature is impaired but a workaround exists",
+              "2": "A core function is unavailable and there is no workaround"
+            },
+            "confidence": 0.9999977658609086
+          }
+        },
+        "usage": {
+          "input_tokens": 153,
+          "processed_tokens": 153,
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 305.48033298691735,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "0",
+              "B": "1",
+              "C": "2"
+            },
+            "logits": {
+              "0": 53.5,
+              "1": 37.75,
+              "2": 33.25
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 153,
+            "cached_tokens": 0,
+            "image_tokens": 0,
+            "latency_ms": 305.4200829938054
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "severity_1",
+      "request": {
+        "state": "Export fails in Safari. Users can export successfully in Chrome as a workaround.",
+        "questions": {
+          "decision": {
+            "instructions": "How severe is the software issue?",
+            "type": "score",
+            "criteria": [
+              "Cosmetic issue with no effect on functionality",
+              "A feature is impaired but a workaround exists",
+              "A core function is unavailable and there is no workaround"
+            ]
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "score",
+            "score": 1.4999999488079765,
+            "normalized_score": 0.7499999744039882,
+            "probabilities": {
+              "0": 3.4128015716952855e-08,
+              "1": 0.4999999829359921,
+              "2": 0.4999999829359921
+            },
+            "legend": {
+              "0": "Cosmetic issue with no effect on functionality",
+              "1": "A feature is impaired but a workaround exists",
+              "2": "A core function is unavailable and there is no workaround"
+            },
+            "confidence": 0.369069702797016
+          }
+        },
+        "usage": {
+          "input_tokens": 157,
+          "processed_tokens": 26,
+          "cached_tokens": 131,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 64.62370796361938,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "0",
+              "B": "1",
+              "C": "2"
+            },
+            "logits": {
+              "0": 30.25,
+              "1": 46.75,
+              "2": 46.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 157,
+            "cached_tokens": 131,
+            "image_tokens": 0,
+            "latency_ms": 64.55666600959376
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "severity_2",
+      "request": {
+        "state": "All users are unable to sign in. The production service is unavailable and there is no workaround.",
+        "questions": {
+          "decision": {
+            "instructions": "How severe is the software issue?",
+            "type": "score",
+            "criteria": [
+              "Cosmetic issue with no effect on functionality",
+              "A feature is impaired but a workaround exists",
+              "A core function is unavailable and there is no workaround"
+            ]
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": 2,
+      "actual": 2,
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "score",
+            "score": 1.9999999999111124,
+            "normalized_score": 0.9999999999555562,
+            "probabilities": {
+              "0": 2.0206839088834352e-11,
+              "1": 4.8473687059373355e-11,
+              "2": 0.9999999999313194
+            },
+            "legend": {
+              "0": "Cosmetic issue with no effect on functionality",
+              "1": "A feature is impaired but a workaround exists",
+              "2": "A core function is unavailable and there is no workaround"
+            },
+            "confidence": 0.9999999984366422
+          }
+        },
+        "usage": {
+          "input_tokens": 161,
+          "processed_tokens": 30,
+          "cached_tokens": 131,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 62.96554097207263,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "0",
+              "B": "1",
+              "C": "2"
+            },
+            "logits": {
+              "0": 29.125,
+              "1": 30.0,
+              "2": 53.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 161,
+            "cached_tokens": 131,
+            "image_tokens": 0,
+            "latency_ms": 62.91029101703316
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "router_0",
+      "request": {
+        "state": {
+          "request": "Thanks!"
+        },
+        "questions": {
+          "decision": {
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "type": "gates",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": {
+        "delegate": false,
+        "ask": false
+      },
+      "actual": {
+        "delegate": false,
+        "ask": false
+      },
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.0024751396731589885,
+              "ask": 0.0024855596911748257
+            },
+            "joint_probabilities": {
+              "00": 0.9975118853928342,
+              "01": 1.2974934006774781e-05,
+              "10": 2.5549159909378883e-06,
+              "11": 0.002472584757168051
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.9873723887990543
+          }
+        },
+        "usage": {
+          "input_tokens": 239,
+          "processed_tokens": 239,
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 406.1087080044672,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 42.5,
+              "01": 31.25,
+              "10": 29.625,
+              "11": 36.5
+            },
+            "label_mass": 0.9999961256980896,
+            "prompt_tokens": 239,
+            "cached_tokens": 0,
+            "image_tokens": 0,
+            "latency_ms": 406.0390419908799
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "router_1",
+      "request": {
+        "state": {
+          "request": "What is 7 times 8?"
+        },
+        "questions": {
+          "decision": {
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "type": "gates",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": {
+        "delegate": false,
+        "ask": false
+      },
+      "actual": {
+        "delegate": false,
+        "ask": false
+      },
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.03702694613847708,
+              "ask": 0.2940329257688865
+            },
+            "joint_probabilities": {
+              "00": 0.703989712015,
+              "01": 0.25898334184652283,
+              "10": 0.00197736221611342,
+              "11": 0.03504958392236366
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.4757674462499232
+          }
+        },
+        "usage": {
+          "input_tokens": 245,
+          "processed_tokens": 22,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 62.71499994909391,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 34.0,
+              "01": 33.0,
+              "10": 28.125,
+              "11": 31.0
+            },
+            "label_mass": 0.9697361588478088,
+            "prompt_tokens": 245,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 62.637042021378875
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "router_2",
+      "request": {
+        "state": {
+          "request": "Inspect the codebase, implement SSO, and run the tests.",
+          "context": "Repository, requirements and credentials are available."
+        },
+        "questions": {
+          "decision": {
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "type": "gates",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": {
+        "delegate": true,
+        "ask": false
+      },
+      "actual": {
+        "delegate": true,
+        "ask": false
+      },
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.9921938734739625,
+              "ask": 0.006335051891573384
+            },
+            "joint_probabilities": {
+              "00": 0.006650451366376947,
+              "01": 0.0011556751596607231,
+              "10": 0.9870144967420498,
+              "11": 0.005179376731912661
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.9413433782482886
+          }
+        },
+        "usage": {
+          "input_tokens": 261,
+          "processed_tokens": 38,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 110.40524998679757,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 37.75,
+              "01": 36.0,
+              "10": 42.75,
+              "11": 37.5
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 261,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 110.32787500880659
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "router_3",
+      "request": {
+        "state": {
+          "request": "Book it for me.",
+          "context": "No earlier messages or referent for 'it'."
+        },
+        "questions": {
+          "decision": {
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "type": "gates",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": {
+        "delegate": false,
+        "ask": true
+      },
+      "actual": {
+        "delegate": false,
+        "ask": true
+      },
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.11780290689478617,
+              "ask": 0.5395209358861297
+            },
+            "joint_probabilities": {
+              "00": 0.4410985465526069,
+              "01": 0.4410985465526069,
+              "10": 0.019380517561263376,
+              "11": 0.0984223893335228
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.2594035602378004
+          }
+        },
+        "usage": {
+          "input_tokens": 255,
+          "processed_tokens": 32,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 147.4349169875495,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 28.875,
+              "01": 28.875,
+              "10": 25.75,
+              "11": 27.375
+            },
+            "label_mass": 0.0006649430142715573,
+            "prompt_tokens": 255,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 147.3638750030659
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "router_4",
+      "request": {
+        "state": {
+          "request": "Compare six CRM products using public pricing and reviews, then write a report."
+        },
+        "questions": {
+          "decision": {
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "type": "gates",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": false,
+      "expected": {
+        "delegate": true,
+        "ask": false
+      },
+      "actual": {
+        "delegate": true,
+        "ask": false
+      },
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.9231984760925078,
+              "ask": 0.1159702714525182
+            },
+            "joint_probabilities": {
+              "00": 0.004614746299860165,
+              "01": 0.07218677760763201,
+              "10": 0.8794149822476216,
+              "11": 0.043783493844886195
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.6649028935414327
+          }
+        },
+        "usage": {
+          "input_tokens": 252,
+          "processed_tokens": 29,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 62.45220795972273,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 31.75,
+              "01": 34.5,
+              "10": 37.0,
+              "11": 34.0
+            },
+            "label_mass": 0.20228305459022522,
+            "prompt_tokens": 252,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 62.41037504514679
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "color_red",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What is the color of the single large shape in the image?",
+            "type": "choice",
+            "criteria": {
+              "red": "Red",
+              "blue": "Blue",
+              "green": "Green",
+              "other": "Another color"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "red",
+      "actual": "red",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "red",
+            "probabilities": {
+              "red": 0.9999999897519783,
+              "blue": 2.9989607941238917e-09,
+              "green": 7.194132956599752e-09,
+              "other": 5.4927882946644696e-11
+            },
+            "confidence": 0.9999998519143573
+          }
+        },
+        "usage": {
+          "input_tokens": 232,
+          "processed_tokens": 232,
+          "cached_tokens": 0,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 1867.139457957819,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "red",
+              "B": "blue",
+              "C": "green",
+              "D": "other"
+            },
+            "logits": {
+              "red": 49.5,
+              "blue": 29.875,
+              "green": 30.75,
+              "other": 25.875
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 232,
+            "cached_tokens": 0,
+            "image_tokens": 100,
+            "latency_ms": 1705.8704169467092
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "shape_red",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What shape is shown in the image?",
+            "type": "choice",
+            "criteria": {
+              "circle": "Circle",
+              "square": "Square",
+              "triangle": "Triangle"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "circle",
+      "actual": "circle",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "circle",
+            "probabilities": {
+              "circle": 0.9999998684462068,
+              "square": 9.931193005669961e-08,
+              "triangle": 3.2241863131027385e-08
+            },
+            "confidence": 0.9999979163433391
+          }
+        },
+        "usage": {
+          "input_tokens": 214,
+          "processed_tokens": 214,
+          "cached_tokens": 0,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 453.7852090434171,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "circle",
+              "B": "square",
+              "C": "triangle"
+            },
+            "logits": {
+              "circle": 46.75,
+              "square": 30.625,
+              "triangle": 29.5
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 214,
+            "cached_tokens": 0,
+            "image_tokens": 100,
+            "latency_ms": 453.0487500014715
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "color_blue",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What is the color of the single large shape in the image?",
+            "type": "choice",
+            "criteria": {
+              "red": "Red",
+              "blue": "Blue",
+              "green": "Green",
+              "other": "Another color"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "blue",
+      "actual": "blue",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "blue",
+            "probabilities": {
+              "red": 1.955568057581574e-08,
+              "blue": 0.9999999738165726,
+              "green": 6.3487999498103335e-09,
+              "other": 2.789468019831089e-10
+            },
+            "confidence": 0.9999996398548529
+          }
+        },
+        "usage": {
+          "input_tokens": 232,
+          "processed_tokens": 118,
+          "cached_tokens": 114,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 302.420667023398,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "red",
+              "B": "blue",
+              "C": "green",
+              "D": "other"
+            },
+            "logits": {
+              "red": 32.0,
+              "blue": 49.75,
+              "green": 30.875,
+              "other": 27.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 232,
+            "cached_tokens": 114,
+            "image_tokens": 100,
+            "latency_ms": 301.7215419677086
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "shape_blue",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What shape is shown in the image?",
+            "type": "choice",
+            "criteria": {
+              "circle": "Circle",
+              "square": "Square",
+              "triangle": "Triangle"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "square",
+      "actual": "square",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "square",
+            "probabilities": {
+              "circle": 2.335592801392083e-09,
+              "square": 0.9999998983524742,
+              "triangle": 9.931193302674913e-08
+            },
+            "confidence": 0.9999984075616338
+          }
+        },
+        "usage": {
+          "input_tokens": 214,
+          "processed_tokens": 118,
+          "cached_tokens": 96,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 295.5273750121705,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "circle",
+              "B": "square",
+              "C": "triangle"
+            },
+            "logits": {
+              "circle": 27.625,
+              "square": 47.5,
+              "triangle": 31.375
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 214,
+            "cached_tokens": 96,
+            "image_tokens": 100,
+            "latency_ms": 294.74220803240314
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "color_green",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What is the color of the single large shape in the image?",
+            "type": "choice",
+            "criteria": {
+              "red": "Red",
+              "blue": "Blue",
+              "green": "Green",
+              "other": "Another color"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "green",
+      "actual": "green",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "green",
+            "probabilities": {
+              "red": 1.1861120004135327e-08,
+              "blue": 1.9171714899642737e-10,
+              "green": 0.9999999875889881,
+              "other": 3.581747885830065e-10
+            },
+            "confidence": 0.9999998261866804
+          }
+        },
+        "usage": {
+          "input_tokens": 232,
+          "processed_tokens": 118,
+          "cached_tokens": 114,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 292.6071660476737,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "red",
+              "B": "blue",
+              "C": "green",
+              "D": "other"
+            },
+            "logits": {
+              "red": 31.75,
+              "blue": 27.625,
+              "green": 50.0,
+              "other": 28.25
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 232,
+            "cached_tokens": 114,
+            "image_tokens": 100,
+            "latency_ms": 291.95199999958277
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "shape_green",
+      "request": {
+        "state": "Judge the attached image.",
+        "questions": {
+          "decision": {
+            "instructions": "What shape is shown in the image?",
+            "type": "choice",
+            "criteria": {
+              "circle": "Circle",
+              "square": "Square",
+              "triangle": "Triangle"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "triangle",
+      "actual": "triangle",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "triangle",
+            "probabilities": {
+              "circle": 4.363462124337402e-09,
+              "square": 2.5109990817361662e-08,
+              "triangle": 0.999999970526547
+            },
+            "confidence": 0.9999994967333387
+          }
+        },
+        "usage": {
+          "input_tokens": 214,
+          "processed_tokens": 118,
+          "cached_tokens": 96,
+          "image_tokens": 100,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 296.1781250196509,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "circle",
+              "B": "square",
+              "C": "triangle"
+            },
+            "logits": {
+              "circle": 29.25,
+              "square": 31.0,
+              "triangle": 48.5
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 214,
+            "cached_tokens": 96,
+            "image_tokens": 100,
+            "latency_ms": 295.5300420289859
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "receipt_total",
+      "request": {
+        "state": "Read the attached receipt.",
+        "questions": {
+          "decision": {
+            "instructions": "What is the TOTAL amount on this receipt?",
+            "type": "choice",
+            "criteria": {
+              "4": "$4.00",
+              "8": "$8.00",
+              "12": "$12.00",
+              "20": "$20.00"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "12",
+      "actual": "12",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "12",
+            "probabilities": {
+              "4": 3.059022226734886e-07,
+              "8": 1.3440405652857865e-08,
+              "12": 0.9999996801974663,
+              "20": 4.599053907862754e-10
+            },
+            "confidence": 0.9999962765258317
+          }
+        },
+        "usage": {
+          "input_tokens": 337,
+          "processed_tokens": 337,
+          "cached_tokens": 0,
+          "image_tokens": 190,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 747.6296669919975,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "4",
+              "B": "8",
+              "C": "12",
+              "D": "20"
+            },
+            "logits": {
+              "4": 33.25,
+              "8": 30.125,
+              "12": 48.25,
+              "20": 26.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 337,
+            "cached_tokens": 0,
+            "image_tokens": 190,
+            "latency_ms": 746.3579589966685
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "pair_red_blue",
+      "request": {
+        "state": "The first image is followed by the second. Compare them.",
+        "questions": {
+          "decision": {
+            "instructions": "What are the colors of the shapes in the first and second images, in that order?",
+            "type": "choice",
+            "criteria": {
+              "red_blue": "First red, second blue",
+              "blue_red": "First blue, second red",
+              "same": "Both the same color"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "red_blue",
+      "actual": "blue_red",
+      "passed": false,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "blue_red",
+            "probabilities": {
+              "red_blue": 2.1444945322228167e-05,
+              "blue_red": 0.9999784105597729,
+              "same": 1.444949049794592e-07
+            },
+            "confidence": 0.9997684363875465
+          }
+        },
+        "usage": {
+          "input_tokens": 346,
+          "processed_tokens": 346,
+          "cached_tokens": 0,
+          "image_tokens": 200,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 785.1261660107411,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "red_blue",
+              "B": "blue_red",
+              "C": "same"
+            },
+            "logits": {
+              "red_blue": 39.75,
+              "blue_red": 50.5,
+              "same": 34.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 346,
+            "cached_tokens": 0,
+            "image_tokens": 200,
+            "latency_ms": 783.5404580109753
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    },
+    {
+      "name": "pair_blue_red",
+      "request": {
+        "state": "The first image is followed by the second. Compare them.",
+        "questions": {
+          "decision": {
+            "instructions": "What are the colors of the shapes in the first and second images, in that order?",
+            "type": "choice",
+            "criteria": {
+              "red_blue": "First red, second blue",
+              "blue_red": "First blue, second red",
+              "same": "Both the same color"
+            }
+          }
+        },
+        "temperature": 1.0
+      },
+      "image": true,
+      "expected": "blue_red",
+      "actual": "blue_red",
+      "passed": true,
+      "response": {
+        "model": ".models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "blue_red",
+            "probabilities": {
+              "red_blue": 3.92786080112918e-07,
+              "blue_red": 0.999999301311813,
+              "same": 3.0590210677148806e-07
+            },
+            "confidence": 0.999989913807784
+          }
+        },
+        "usage": {
+          "input_tokens": 346,
+          "processed_tokens": 227,
+          "cached_tokens": 119,
+          "image_tokens": 200,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 560.4681249824353,
+        "traces": {
+          "decision": {
+            "labels": {
+              "A": "red_blue",
+              "B": "blue_red",
+              "C": "same"
+            },
+            "logits": {
+              "red_blue": 36.0,
+              "blue_red": 50.75,
+              "same": 35.75
+            },
+            "label_mass": 1.0,
+            "prompt_tokens": 346,
+            "cached_tokens": 119,
+            "image_tokens": 200,
+            "latency_ms": 558.9841249748133
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      }
+    }
+  ],
+  "cache_checks": [
+    {
+      "name": "team_0",
+      "max_probability_delta": 4.2897552177123544e-10,
+      "same_choice": true,
+      "cached_tokens": 121,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "team_1",
+      "max_probability_delta": 5.273369296787678e-09,
+      "same_choice": true,
+      "cached_tokens": 121,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "color_red",
+      "max_probability_delta": 4.150041532646753e-09,
+      "same_choice": true,
+      "cached_tokens": 114,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "color_blue",
+      "max_probability_delta": 8.453328863023561e-10,
+      "same_choice": true,
+      "cached_tokens": 114,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "color_green",
+      "max_probability_delta": 6.461386981015949e-11,
+      "same_choice": true,
+      "cached_tokens": 114,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "team_3",
+      "max_probability_delta": 3.1605081765473386e-05,
+      "same_choice": true,
+      "cached_tokens": 121,
+      "fresh_tokens": 0
+    },
+    {
+      "name": "pair_red_blue",
+      "max_probability_delta": 8.437818735231786e-06,
+      "same_choice": true,
+      "cached_tokens": 119,
+      "fresh_tokens": 0
+    }
+  ],
+  "reference_forward_checks": [
+    {
+      "name": "team_0",
+      "max_probability_delta": 4.830158495394699e-10,
+      "max_logit_delta": 0.5
+    },
+    {
+      "name": "color_red",
+      "max_probability_delta": 4.150041532646753e-09,
+      "max_logit_delta": 0.5
+    },
+    {
+      "name": "receipt_total",
+      "max_probability_delta": 1.2474703892095818e-07,
+      "max_logit_delta": 0.25
+    },
+    {
+      "name": "pair_red_blue",
+      "max_probability_delta": 8.437818735231786e-06,
+      "max_logit_delta": 0.25
+    }
+  ]
+}

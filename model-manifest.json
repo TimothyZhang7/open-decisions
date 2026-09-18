@@ -1,0 +1,6 @@
+{
+  "repo": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+  "revision": "2fd8dacbdb8f1e54b8c005f081ec5bf79c56376b",
+  "base_model": "Qwen/Qwen3-VL-4B-Instruct",
+  "license": "Apache-2.0"
+}

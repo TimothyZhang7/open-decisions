@@ -1,0 +1,16 @@
+{
+  "state": {
+    "request": "Inspect our codebase, compare database options, run benchmarks, and implement the best one.",
+    "context": "The current repository and its requirements are available to the assistant."
+  },
+  "questions": {
+    "routing": {
+      "type": "gates",
+      "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+      "criteria": {
+        "delegate": "The assistant should delegate the work now because it needs sustained work.",
+        "ask": "The assistant must ask the user for essential missing context before work can proceed."
+      }
+    }
+  }
+}

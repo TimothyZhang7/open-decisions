@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-decisions"
+version = "0.1.0"
+description = "Model-independent typed decisions from open-model logits"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["pydantic>=2.13,<3", "Pillow>=12.3,<13"]
+
+[project.optional-dependencies]
+mlx-vlm = ["mlx-vlm==0.7.1", "mlx==0.32.2", "transformers==5.17.0"]
+mlx-lm = ["mlx-lm==0.31.3", "mlx==0.32.2"]
+transformers = ["transformers==5.17.0", "torch>=2.8,<3"]
+server = ["fastapi>=0.141,<0.142", "uvicorn>=0.53,<0.54"]
+dev = ["pytest>=9,<10", "httpx>=0.28,<0.29", "build>=1.6,<2"]
+
+[project.scripts]
+open-decisions = "open_decisions.cli:main"
+
+[project.urls]
+Repository = "https://github.com/TimothyZhang7/open-decisions"
+Issues = "https://github.com/TimothyZhang7/open-decisions/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/open_decisions"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
