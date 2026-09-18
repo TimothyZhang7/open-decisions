@@ -1,0 +1,14 @@
+{
+  "shapes": true,
+  "orientations": true,
+  "actions": true,
+  "instructions": true,
+  "target_instructions": true,
+  "control_instructions": true,
+  "goal_lines": true,
+  "physics_file_identical": true,
+  "planner_file_identical": false,
+  "state_builder_file_identical": true,
+  "planner_logic_identical_excluding_provider_metadata": true,
+  "metadata_difference": "retained_target changes selected_by and adds selection_confidence_kind; neither enters control_state or target criteria."
+}

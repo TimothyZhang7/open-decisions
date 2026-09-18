@@ -11,7 +11,10 @@
 <body>
 <main>
   <nav><div class="brand"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 0h6v6H7zM0 7h6v6H0zM7 7h6v6H7zM14 7h6v6h-6z"/></svg>OPEN DECISIONS / TETRIS</div><div class="connection"><span class="dot"></span><span id="connection">Loading local Open Decisions…</span></div></nav>
-  <header><div><h1>Tetris</h1><p>Uses the Choice primitive for landing and movement decisions.</p></div><span class="tag">LOCAL MODEL</span></header>
+  <header><div><h1>Tetris</h1><p>Uses typed choices for landing and movement decisions.</p></div><span class="tag" id="model-tag">LOCAL MODEL</span></header>
+  <aside class="card" aria-label="Demo limitations" style="margin-bottom:24px;font-size:14px;line-height:1.6">
+    <strong>Experimental controller.</strong> The model receives structured board state and game-computed legal landings, outcomes, and movement distances. It can choose poor targets or miss moves while gravity continues. The ten-line goal has not been demonstrated by the published runs; both backends cleared zero lines in the 60-second comparison. Qwen probabilities are uncalibrated.
+  </aside>
   <div class="layout">
     <section class="stage" aria-label="Tetris game">
       <div class="stage-head"><span>10 × 20 / LIVE GRAVITY</span><b id="level">LEVEL 01</b></div>
@@ -42,7 +45,7 @@
       <section class="card"><div class="small-label" id="position">—</div><p class="caption" id="gravity-value">500 ms / row</p><div class="metrics"><div><b id="applied">0</b><span>Buttons applied</span></div><div><b id="blocked">0</b><span>Blocked / no effect</span></div><div><b id="discarded">0</b><span>Stale discarded</span></div></div><p class="caption">No-action decisions: <b id="idle">0</b></p><div class="rule"></div><div class="card-title"><h2>Recent decisions</h2><span class="small-label" id="calls">0 REQUESTS</span></div><div class="history" id="history"><span>Ready to play</span></div><p class="caption" id="usage">Game state stays on this Mac. Scores are uncalibrated.</p></section>
     </div>
   </div>
-  <footer><span>Gravity and the 500 ms lock delay run independently of model latency.<br>Left, right, clockwise, counterclockwise—or no action needed. Only Pause freezes the game.</span><span>Open Decisions · 0 generated tokens</span></footer>
+  <footer><span>Gravity and the 500 ms lock delay run independently of model latency.<br>Left, right, clockwise, counterclockwise, or no input. Only Pause freezes the game.</span><span id="backend-note">Open Decisions · 0 generated tokens</span></footer>
 </main>
 <script src="/tetris_game.js"></script>
 <script src="/tetris.js"></script>

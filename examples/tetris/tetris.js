@@ -1,7 +1,8 @@
 'use strict';
 const $=id=>document.getElementById(id),CELL=30;
 const COLORS=['','#62d6eb','#f4d777','#bfa0ef','#7be8ba','#ef7f93','#7baaf0','#ffa775'];
-const LABELS={left:'← Left',right:'Right →',clockwise:'↻ Clockwise',counterclockwise:'↺ Counterclockwise',none:'No action needed'};
+const LABELS={left:'← Left',right:'Right →',clockwise:'↻ Clockwise',counterclockwise:'↺ Counterclockwise',none:'No input'};
+function providerName(){return info?.backend==='typesafe'?'TypeSafe API':'Open Decisions';}
 let target=null,game=null,info=null,seed=42,generation=0,requestId=0,pending=null,runUntil=0,previousTime=null,nextRequestAt=0;
 let calls=0,applied=0,idle=0,blocked=0,discarded=0,errors=0,inputTokens=0,outputTokens=0,recentActions=[],lastLocked=0;
 const canvas=$('board'),ctx=canvas.getContext('2d');ctx.scale(2,2);
@@ -34,7 +35,7 @@ function update(){
   $('discarded').textContent=discarded;$('applied').textContent=applied;$('blocked').textContent=blocked;$('idle').textContent=idle;
   $('position').textContent=game.over?'—':`${game.active.piece} #${game.active.id} · x ${game.active.x} · y ${game.active.y}`;
   $('gravity-value').textContent=`${game.gravityMs} ms / row`;$('goal-progress').textContent=`${game.lines} / ${info.goal_lines||10} lines`;$('target').textContent=target?`Target: columns ${Math.min(...target.cells.map(c=>c[0]))+1}–${Math.max(...target.cells.map(c=>c[0]))+1} · ${target.outcome.lines} projected clears · ${target.outcome.holes} holes`:'Choosing a landing for this piece…';
-  $('usage').textContent=`${inputTokens.toLocaleString()} input + ${outputTokens.toLocaleString()} generated output tokens · ${errors} inference errors.`;
+  $('usage').textContent=`${inputTokens.toLocaleString()} input + ${outputTokens.toLocaleString()} ${info.backend==='typesafe'?'API-reported output tokens':'generated answer tokens'} · ${errors} inference errors.`;
   for(const button of document.querySelectorAll('[data-action]'))button.disabled=!game.running||game.over;
   drawQueue();draw();
 }
@@ -61,7 +62,7 @@ function recordAction(action,changed){
 function showDecision(result,changed){
   $('decision').textContent=LABELS[result.action];$('detail').textContent=`${result.action==='none'?'No input sent; gravity continues':changed?'Applied one button':'Button had no effect'} · snapshot row ${result.snapshot_y} → live row ${game.active.y}`;
   $('latency').textContent=`${Math.round(result.latency_ms)} ms`;$('confidence').textContent=result.confidence.toFixed(2);
-  $('connection').textContent=`${result.model} / ${'Open Decisions'}`;$('raw').textContent=JSON.stringify({...result,disposition:'applied'},null,2);
+  $('connection').textContent=`${result.model} / ${providerName()}`;$('raw').textContent=JSON.stringify({...result,disposition:'applied'},null,2);
   $('candidates').replaceChildren();for(const action of TETRIS_ACTIONS){const row=document.createElement('div');row.className='candidate';const label=document.createElement('span'),track=document.createElement('div'),bar=document.createElement('div'),prob=document.createElement('span');label.textContent=LABELS[action];track.className='track';bar.className='bar';bar.style.width=`${result.probabilities[action]*100}%`;if(action===result.action)bar.style.background='var(--mint)';prob.textContent=`${Math.round(result.probabilities[action]*100)}%`;track.append(bar);row.append(label,track,prob);$('candidates').append(row);}
 }
 async function askModel(now=performance.now()){
@@ -99,7 +100,7 @@ $('speed').onchange=()=>{if(game){game.gravityMs=Number($('speed').value);update
 for(const button of document.querySelectorAll('[data-action]'))button.onclick=()=>{if(!game?.running)return;generation++;target=null;const action=button.dataset.action,changed=game.action(action);recordAction(action,changed);update();};
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&game?.running)pause('PAUSED WHILE AWAY');});
 async function init(){
-  try{const response=await fetch('/api/info');if(!response.ok)throw new Error('Cannot connect to the game server.');info=await response.json();$('connection').textContent=`${info.model} / ${'Open Decisions'}`;newGame();requestAnimationFrame(frame);}
+  try{const response=await fetch('/api/info');if(!response.ok)throw new Error('Cannot connect to the game server.');info=await response.json();$('connection').textContent=`${info.model} / ${providerName()}`;$('backend-note').textContent=info.backend==='typesafe'?'Hosted Jev · typed decisions':'Open Decisions · 0 generated tokens';$('model-tag').textContent=info.backend==='typesafe'?'HOSTED JEV':'LOCAL MODEL';newGame();requestAnimationFrame(frame);}
   catch(error){$('connection').textContent='Server unavailable';$('error').textContent=error.message;}
 }
 init();

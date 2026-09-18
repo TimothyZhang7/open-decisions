@@ -4,28 +4,48 @@ An open-source package for Jev-style typed decisions on open models. Supply appl
 
 The core is independent of any model or runtime. Qwen3-VL-4B is one supported backend. Applications own their workflows; backend adapters own inference. This is an independent implementation of the programming pattern, with stock model weights and uncalibrated probabilities.
 
-## Package structure
+[Install](#install) · [Python SDK](#python-sdk) · [Run locally](#run-the-examples) · [Limitations](#limitations) · [Development updates on X](https://x.com/TimothyZ77)
 
-```text
-src/open_decisions/
-  schema.py          Typed questions, answers, validation
-  engine.py          Question compilation, softmax, scores, gate marginals
-  client.py          Local SDK and HTTP client
-  server.py          HTTP API, no demo-specific decisions
-  backends/
-    base.py          Backend protocol and lazy runtime loader
-    labels.py        Single-token labels checked in answer context
-    mlx_vlm.py       Qwen3-VL on Apple Silicon
-    mlx_lm.py        Text models supported by MLX-LM
-    transformers.py Hugging Face models on PyTorch
-examples/
-  router/            Delegate/ask gates and a primitive playground
-  tetris/            Persistent target + individual movement choices
-  check_backends.py Same SDK calls across three runtimes
-  evaluate_model.py Text/image smoke evaluation and cache checks
-```
+## Demos
 
-The examples import the public package. Neither contains model loading, tokenization, logit extraction, or probability math for model inference.
+### Agent routing
+
+Qwen3-VL-4B returns two probabilities in one evaluation: whether to delegate the work and whether to ask for missing context.
+
+[![Three recorded routing results with actual scores and engine timings](docs/media/router.gif)](https://github.com/TimothyZhang7/open-decisions/releases/download/demo-2026-09-18/open-decisions-launch.mp4)
+
+[Watch / download the 28-second clip](https://github.com/TimothyZhang7/open-decisions/releases/download/demo-2026-09-18/open-decisions-launch.mp4) · [Recorded inputs and outputs](docs/media/router-results.json)
+
+These are recorded model outputs, held on screen for readability. The model was already loaded. Engine times were 533 ms with an uncached policy, then 113 ms and 118 ms with the policy cached. Zero answer tokens were generated; model inference still ran.
+
+### Tetris: Qwen vs. Jev
+
+One 60-second run per backend, with seed 42, an empty board, the same piece sequence, 500 ms gravity, and the same controller. Playback is synchronized by elapsed time; the runs were recorded separately.
+
+[![Qwen and Jev Tetris runs side by side at real-time playback speed](docs/media/tetris-comparison.gif)](https://github.com/TimothyZhang7/open-decisions/releases/download/demo-2026-09-18/tetris-qwen-vs-jev.mp4)
+
+[Watch / download the comparison](https://github.com/TimothyZhang7/open-decisions/releases/download/demo-2026-09-18/tetris-qwen-vs-jev.mp4) · [Method and limitations](examples/tetris/COMPARISON.md) · [Run the example](examples/tetris/README.md)
+
+| Observed result | Qwen3-VL-4B, local MLX 4-bit | Jev 1.13.0, hosted API |
+| --- | ---: | ---: |
+| Lines cleared | **0** | **0** |
+| Pieces locked | 6 | 6 |
+| Median controller request time | 419 ms | 135 ms |
+| Failed requests | 0 | 1 connection failure |
+| Stale responses discarded | 4 | 1 |
+
+**Tetris is an experimental integration example. Neither run reached the 10-line goal.** The models receive structured board state and game-computed legal landings, projected outcomes, and distances to the target. This evaluates choices within that supplied controller. It does not test playing from screenshots, learning the rules, or general game-playing ability. Jev's request time includes network access; Qwen runs locally. One short run does not establish a reliable quality or speed ranking.
+
+## Limitations
+
+- **Probabilities are uncalibrated.** A high score can be wrong. The saved Qwen vision checks include a confident image-ordering error. Distribution concentration is not a correctness guarantee.
+- **Stock models and an independent interface.** This package implements the decision pattern. It does not reproduce Jev's training or claim matching quality, calibration, or speed.
+- **Zero generated tokens still requires inference.** Input length, image processing, model size, cache use, and hardware determine cost and latency. Multiple questions are evaluated serially; joint `Gates` use one evaluation.
+- **Small evaluations.** The 27/28 synthetic smoke result and these demos are implementation checks. They do not establish production accuracy or long-run agent reliability.
+- **Tetris receives substantial help from code.** The controller enumerates and evaluates legal landings, maintains targets, and supplies movement distances. Model choices can still be poor or arrive too late while gravity continues.
+- **Backend coverage is partial.** The MLX vision adapter currently targets Qwen3-VL. Transformers vision and CUDA/MPS execution remain unverified here.
+
+See [EVALUATION.md](EVALUATION.md) for measurements and recorded failures.
 
 ## Decision primitives
 
@@ -214,6 +234,8 @@ Scores are uncalibrated. A confident wrong answer is possible and appears in the
 MLX backends reuse immutable copies of cached static policies (LRU: eight policies, 4096 total cached tokens, 2048 per policy). Current state and images never extend the stored cache. The Transformers adapter performs a fresh prefill. Input usage sums full prompt tokens across questions; processed tokens exclude actual cache hits; image tokens are a subset of input tokens. Model evaluations count output distributions, not decoder calls used to build a cache.
 
 ## Tests and measured results
+
+The reusable package is under `src/open_decisions/`; model adapters are under `backends/`. Both applications import the public SDK. Neither example implements model loading, tokenization, or logit extraction.
 
 ```sh
 uv run pytest -q

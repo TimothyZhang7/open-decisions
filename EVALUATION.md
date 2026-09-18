@@ -1,8 +1,9 @@
 # Evaluation
 
 Local verification on September 18, 2026, on an Apple M4 Pro / 48 GB Mac.
-These are implementation and synthetic smoke checks. They are not a comparison
-with Jev or a general accuracy/calibration benchmark.
+These are implementation and synthetic smoke checks. A separate short Tetris
+comparison with Jev appears below; it does not establish general accuracy,
+calibration, game-playing strength, or performance parity.
 
 ## Package and runtime checks
 
@@ -79,6 +80,24 @@ The game physics and target/control prompts match the earlier demo. Only the
 inference integration and branding changed. This test confirms the application
 uses the package; it does not establish game-playing quality.
 Raw trace: [tetris-smoke.json](results/tetris-smoke.json).
+
+### Recorded Qwen / Jev comparison
+
+The later demonstration ran each backend for 60.07 seconds, sequentially, with
+the same seed (42), empty board, 500 ms gravity, instructions, game mechanics,
+and controller. Qwen ran locally on the M4 Pro; Jev 1.13.0 used its hosted API.
+
+Both locked six pieces and cleared **zero lines**. Qwen's median controller
+request time was 419 ms, with four stale responses and no request errors.
+Jev's median was 135 ms, with one stale response and one initial connection
+failure. These request timings include planner work and one or two model
+evaluations, and Jev's include network time. Qwen's longest request was 4.20 s.
+
+The models receive substantial game-computed state, including legal landings,
+projected outcomes, and movement distances. Neither run demonstrates reaching
+the ten-line goal. One minute and one seed do not establish a reliable model
+ranking. Read the [full method and limitations](examples/tetris/COMPARISON.md)
+alongside the video; all recorded states and responses are linked there.
 
 ## Reproduce
 

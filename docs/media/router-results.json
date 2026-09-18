@@ -1,0 +1,298 @@
+{
+  "captured_at": "2026-09-18T19:08:06.403163+00:00",
+  "server": {
+    "model": "../qwen-decisions/.models/qwen3-vl-4b-instruct-4bit",
+    "backend": "mlx-vlm",
+    "label_capacity": 255,
+    "images": true,
+    "prefix_cache": true,
+    "primitives": [
+      "choice",
+      "noul",
+      "score",
+      "gates"
+    ],
+    "generated_tokens": 0,
+    "license": "MIT",
+    "probability_kind": "uncalibrated_label_probability",
+    "confidence_kind": "normalized_entropy_concentration"
+  },
+  "cases": [
+    {
+      "title": "Direct response",
+      "request": "Rewrite this sentence more politely: Send the report today.",
+      "context": "No additional context is needed.",
+      "request_body": {
+        "state": {
+          "request": "Rewrite this sentence more politely: Send the report today.",
+          "context": "No additional context is needed."
+        },
+        "questions": {
+          "routing": {
+            "type": "gates",
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "../qwen-decisions/.models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "routing": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.003532980398872065,
+              "ask": 0.15099358565456159
+            },
+            "joint_probabilities": {
+              "00": 0.8489428694181923,
+              "01": 0.14752415018293558,
+              "10": 6.354492724606696e-05,
+              "11": 0.003469435471625998
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.6814412337961677
+          }
+        },
+        "usage": {
+          "input_tokens": 257,
+          "processed_tokens": 257,
+          "cached_tokens": 0,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 532.6137079973705,
+        "traces": {
+          "routing": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 39.5,
+              "01": 37.75,
+              "10": 30.0,
+              "11": 34.0
+            },
+            "label_mass": 0.9999313354492188,
+            "prompt_tokens": 257,
+            "cached_tokens": 0,
+            "image_tokens": 0,
+            "latency_ms": 532.5382089940831
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      },
+      "http_elapsed_ms": 534.2777920304798
+    },
+    {
+      "title": "Delegate the work",
+      "request": "Compare three CRM options for a ten-person sales team. Research current pricing and integrations.",
+      "context": "The assistant can browse the web. Start with a general comparison; no purchase is requested.",
+      "request_body": {
+        "state": {
+          "request": "Compare three CRM options for a ten-person sales team. Research current pricing and integrations.",
+          "context": "The assistant can browse the web. Start with a general comparison; no purchase is requested."
+        },
+        "questions": {
+          "routing": {
+            "type": "gates",
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "../qwen-decisions/.models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "routing": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.9836172782308724,
+              "ask": 0.019091911541796465
+            },
+            "joint_probabilities": {
+              "00": 0.002425416054052106,
+              "01": 0.013957305715075507,
+              "10": 0.9784826724041514,
+              "11": 0.005134605826720956
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.9115772737239748
+          }
+        },
+        "usage": {
+          "input_tokens": 275,
+          "processed_tokens": 52,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 113.05395897943527,
+        "traces": {
+          "routing": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 36.0,
+              "01": 37.75,
+              "10": 42.0,
+              "11": 36.75
+            },
+            "label_mass": 0.9998703002929688,
+            "prompt_tokens": 275,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 112.99795797094703
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      },
+      "http_elapsed_ms": 114.76258299080655
+    },
+    {
+      "title": "Ask for context",
+      "request": "Book it for me.",
+      "context": "There are no earlier messages or records identifying what should be booked.",
+      "request_body": {
+        "state": {
+          "request": "Book it for me.",
+          "context": "There are no earlier messages or records identifying what should be booked."
+        },
+        "questions": {
+          "routing": {
+            "type": "gates",
+            "instructions": "Decide how an assistant should handle this request. Ask for essential missing context only when it cannot be inferred or retrieved. Asking is a direct response. Otherwise delegate work that takes more than a couple of fast tool calls or a few seconds; handle short answers and quick lookups directly.",
+            "criteria": {
+              "delegate": "The assistant should delegate the work now because it needs sustained work.",
+              "ask": "The assistant must ask the user for essential missing context before work can proceed."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "../qwen-decisions/.models/qwen3-vl-4b-instruct-4bit",
+        "answers": {
+          "routing": {
+            "type": "gates",
+            "gates": {
+              "delegate": 0.04507564653258887,
+              "ask": 0.8074366082618734
+            },
+            "joint_probabilities": {
+              "00": 0.17420257537673864,
+              "01": 0.7807217780906724,
+              "10": 0.018360816361387974,
+              "11": 0.026714830171200903
+            },
+            "outcomes": {
+              "00": {
+                "delegate": false,
+                "ask": false
+              },
+              "01": {
+                "delegate": false,
+                "ask": true
+              },
+              "10": {
+                "delegate": true,
+                "ask": false
+              },
+              "11": {
+                "delegate": true,
+                "ask": true
+              }
+            },
+            "confidence": 0.5182437975445496
+          }
+        },
+        "usage": {
+          "input_tokens": 257,
+          "processed_tokens": 34,
+          "cached_tokens": 223,
+          "image_tokens": 0,
+          "output_tokens": 0,
+          "model_evaluations": 1
+        },
+        "latency_ms": 118.20683296537027,
+        "traces": {
+          "routing": {
+            "labels": {
+              "A": "00",
+              "B": "01",
+              "C": "10",
+              "D": "11"
+            },
+            "logits": {
+              "00": 33.5,
+              "01": 35.0,
+              "10": 31.25,
+              "11": 31.625
+            },
+            "label_mass": 0.00836158636957407,
+            "prompt_tokens": 257,
+            "cached_tokens": 223,
+            "image_tokens": 0,
+            "latency_ms": 118.13975003315136
+          }
+        },
+        "backend": "mlx-vlm",
+        "probability_kind": "uncalibrated_label_probability",
+        "confidence_kind": "normalized_entropy_concentration"
+      },
+      "http_elapsed_ms": 119.83762501040474
+    }
+  ]
+}

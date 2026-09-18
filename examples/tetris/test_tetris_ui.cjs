@@ -61,7 +61,7 @@ test('no-action response is shown and counted separately from blocked buttons',a
   const ui=await playing(),before=ui.state().active;
   resolveAction(ui.pending[0],{action:'none'});await flush();
   assert.deepEqual(ui.state().active,before);assert.equal(ui.state().idle,1);assert.equal(ui.state().applied,0);assert.equal(ui.state().blocked,0);
-  assert.equal(ui.$('decision').textContent,'No action needed');assert.match(ui.$('detail').textContent,/gravity continues/);
+  assert.equal(ui.$('decision').textContent,'No input');assert.match(ui.$('detail').textContent,/gravity continues/);
   ui.advance(1100);assert.ok(ui.state().active.y>before.y);assert.equal(ui.state().running,true);
 });
 test('gravity runs during inference; response presses one button at live row',async()=>{

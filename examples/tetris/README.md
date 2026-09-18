@@ -1,5 +1,9 @@
 # Tetris example
 
+[Watch Qwen and Jev side by side](https://github.com/TimothyZhang7/open-decisions/releases/download/demo-2026-09-18/tetris-qwen-vs-jev.mp4) · [Recorded comparison and limitations](COMPARISON.md)
+
+**This is an experimental controller.** In the published 60-second comparison, both backends locked six pieces and cleared zero lines. Neither reached the ten-line goal. The models receive structured state and legal landings with outcomes and movement distances computed by the game. The example does not establish strong gameplay, vision-based control, or parity between models. Qwen's scores are uncalibrated.
+
 Run from the package root:
 
 ```sh
@@ -18,3 +22,11 @@ Run a short integration check:
 cd examples/tetris
 node run_tetris_live.cjs --port=8773 --seconds=20 --output=../../results/tetris-smoke.json
 ```
+
+For an actual state-by-state recording, run from the package root:
+
+```sh
+node examples/tetris/record_demo.cjs --port=8773 --seconds=60 --seed=42 --output=tetris-qwen.json
+```
+
+The recorder uses the same JavaScript controller and physics at wall-clock speed. It samples board state and retains API responses, including failures. See [COMPARISON.md](COMPARISON.md) for the optional Jev baseline and comparison setup.
